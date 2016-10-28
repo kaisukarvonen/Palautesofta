@@ -10,4 +10,7 @@ vastaus_id integer NOT NULL auto_increment
 ,kysymys_id int NOT NULL
 PRIMARY KEY(vastaus_id)
 FOREIGN KEY (kysymys_id) REFERENCES kysymys (kysymys_id)
-); 
+);
+
+ALTER TABLE vastaus
+ALTER COLUMN kysymys_id int NOT NULL;
