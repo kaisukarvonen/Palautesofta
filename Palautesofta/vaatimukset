@@ -1,20 +1,23 @@
-Softan vaatimukset:
+Softan vaatimukset: (*-merkityt ei pakollisia mutta nice to have)
 
 - Lisätä feedbackkyselyn, jossa on kysymyksiä. Kysymykset voivat olla (prioriteettijärjestyksessä) tyyppiä skaala 1-5, multiple choice,
 checkbox, avoin teksti. Kysymykset voivat olla vapaaehtoisia tai pakollisia.
 
-- Kyselyyn annetut yksittäiset vastaukset voi tallentaa.
+- Kyselyyn annetut yksittäiset vastaukset voi tallentaa tietokantaan.
 
+* Linkki kyselyn täyttämiseen, palautteen voi antaa vain kerran??
+
+
+Admin:
 - Kyselyyn annetut kaikki vastaukset voi hakea.
 
-- Kyselyn kysymykset voi hakea.(admin)
+- Kyselyn kysymykset voi hakea.
 
-- Feedbackkyselyyn voi lisätä kysymyksiä.(admin)
+- Kyselyyn voi lisätä kysymyksiä: jokin template josta voi luoda uusia kysymyksiä?
 
-Kyselyn voi deployata/undeployata
+- Kyselyn voi deployata/undeployata
 
-Kyselyn muokkaus ja siihen liittyvä autentikointi (vain kyselyn luoja voi muokata).
+- Kyselyn muokkaus: olemassaolevien kysymysten muokkaus
+
 
 Digiprojekti1-kurssilta esitetään lisätoiveita ja muutostarpeita kurssin edetessä.
-
--gddkfgkfdgk
