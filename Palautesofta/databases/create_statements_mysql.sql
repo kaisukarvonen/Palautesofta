@@ -8,5 +8,5 @@ CREATE TABLE vastaus (
 vastaus_id
 ,nimi
 PRIMARY KEY(vastaus_id)
-REFERENCES kysymys (kysymys_id)
+REFERENCES kysymys(kysymys_id)
 );
