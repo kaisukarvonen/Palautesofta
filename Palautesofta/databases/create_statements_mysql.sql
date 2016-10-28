@@ -1,7 +1,7 @@
 CREATE TABLE kysymys (
 kysymys_id integer NOT NULL auto_increment
 ,nimi varchar(255) NOT NULL
-PRIMARY KEY(kysymys_id)
+,PRIMARY KEY(kysymys_id)
 );
 
 CREATE TABLE vastaus (
