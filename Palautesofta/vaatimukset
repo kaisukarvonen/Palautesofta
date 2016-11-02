@@ -21,3 +21,10 @@ Admin:
 
 
 Digiprojekti1-kurssilta esitetään lisätoiveita ja muutostarpeita kurssin edetessä.
+
+Toiminnallisuustavoite:
+
+1. Syötetään avoin kysymys (Taru)
+2. Haetaan tietokannasta kysymys ja näytetään se näytöllä
+3. Tehdään yksinkertainen lomake johon voi syöttää avoimeen kenttään palautetekstin, joka tallennetaan tietokantaan
+
