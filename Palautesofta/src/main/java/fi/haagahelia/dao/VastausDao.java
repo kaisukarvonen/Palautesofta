@@ -21,7 +21,8 @@ public class VastausDao {
 	}
 	
 	public List<Vastaus> listaaVastaukset() {
-		String searchSql = "select vastaus_nimi from vastaus";
+		String searchSql = "SELECT vastaus_nimi, ky.kysymys_nimi FROM vastaus JOIN kysymys ky "
+				+ "ON vastaus.kysymys_id = ky.kysymys_id";
 		RowMapper<Vastaus> rowmapper = new VastausRowMapper();
 		List<Vastaus> vastaukset = jdbcTemplate.query(searchSql, rowmapper);
 		return vastaukset;
