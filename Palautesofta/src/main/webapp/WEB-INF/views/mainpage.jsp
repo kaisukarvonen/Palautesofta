@@ -4,12 +4,23 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <title>Palautesofta</title>
 </head>
 <body>
  
  
 <h3>Palautesofta</h3>
+ <div id="listaa"></div>
+ 
+<script>
+$.getJSON("vastaukset.json", function (data) { //mikä url? tämä ei toimi
+	$("#listaa").append("f");
+	console.log(data); //tulostaa Array [ Object, Object, Object, Object ]
+});
+
+
+</script>
  
  
 </body>
