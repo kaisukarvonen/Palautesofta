@@ -14,7 +14,3 @@ vastaus_id integer NOT NULL auto_increment
 
 ALTER TABLE vastaus
 ALTER COLUMN kysymys_id int NOT NULL;
-
-CREATE TABLE schaiba (
-troliloo int not null
-);
