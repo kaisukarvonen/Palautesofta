@@ -36,7 +36,7 @@ public class PalauteController {
     @ResponseBody
     public Vastaus lisaaVastaus(Vastaus vastaus) {
     	vastausDao.lisaaVastaus(vastaus); 
-    	System.out.println(vastaus.getNimi()); 
+    	System.out.println("vastaus:" +vastaus.getNimi()); 
         return vastaus;
     }
 	

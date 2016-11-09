@@ -32,6 +32,7 @@ body {
       <!--  <textarea rows="4" cols="20" name="vastaus" id="vastaus"></textarea>-->
       <br/>
       <input type="submit" value="Lis‰‰ vastaus"/></form>
+      <br><br>
  	</div>
  </div>
 </div>
@@ -48,9 +49,6 @@ $.getJSON("vastaukset.json", function (lista) {
 $(document).ready(function() { 
 	$('#lisaaVastausForm').submit(function(e) {
         $.post('${pageContext.request.contextPath}/lisaaVastaus', $(this).serialize(), function(response) {
-            //$('#personFormResponse').text(response);
-            console.log(response);
-            console.log("t‰‰ll‰");
           });
            
           //e.preventDefault(); // prevent actual form submit and page reload
