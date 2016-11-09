@@ -31,5 +31,13 @@ public class PalauteController {
 		return vastaukset;
 	}
 	
+    @RequestMapping(value="lisaaVastaus", method=RequestMethod.POST)
+    @ResponseBody
+    public String lisaaVastaus(Vastaus vastaus) {
+    	vastausDao.lisaaVastaus(vastaus); 
+    	System.out.println(vastaus); 
+        return "mainpage";
+    }
+	
 
 }

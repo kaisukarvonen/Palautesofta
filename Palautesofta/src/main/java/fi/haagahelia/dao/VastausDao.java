@@ -27,5 +27,15 @@ public class VastausDao {
 		List<Vastaus> vastaukset = jdbcTemplate.query(searchSql, rowmapper);
 		return vastaukset;
 	}
+	
+	public void lisaaVastaus(Vastaus vastaus) {
+		String addSql = "INSERT INTO vastaus (vastaus_nimi,kysymys_id) VALUES (?,?)";
+		Object[] params = new Object[] {vastaus.getNimi(), 2};
+		try {
+		jdbcTemplate.update(addSql, params);
+		} catch (Exception e) {
+			System.out.println("tietokantaan lis‰‰minen ep‰onnistui");
+		}
+	}
 
 }

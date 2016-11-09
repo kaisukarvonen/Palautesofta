@@ -22,6 +22,14 @@ body {
 		<h3>Vastaukset: </h3>
 			<div id="listaa"></div>
  	<br><br>
+ 	
+ 	<h3>Miten menee?</h3>
+ 	<form id="lisaaVastausForm">
+      <label for="vastaus">Vastaus: </label><br>
+      <!--  <input type="text" name="vastaus" id="vastaus"/>-->
+      <textarea rows="4" cols="20" name="vastaus" id="vastaus"></textarea>
+      <br/>
+      <input type="submit" value="Lis‰‰ vastaus"/></form>
  	</div>
  </div>
 </div>
@@ -34,6 +42,18 @@ $.getJSON("vastaukset.json", function (lista) {
 	    });
 		$("#listaa").append(list);
 });
+
+$(document).ready(function() { 
+	$('#lisaaVastausForm').submit(function(e) {
+        $.post('${pageContext.request.contextPath}/lisaaVastaus', $(this).serialize(), function(response) {
+            //$('#personFormResponse').text(response);
+            console.log("t‰‰ll‰");
+          });
+           
+          e.preventDefault(); // prevent actual form submit and page reload
+	});
+});
+
 
 
 </script>

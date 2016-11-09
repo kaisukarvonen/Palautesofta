@@ -7,11 +7,16 @@ public class Vastaus {
 	public Vastaus() {
 		super();
 	}
+	
+	public Vastaus(String nimi) {
+		this.nimi = nimi;
+	}
+	
 
 	public Vastaus(String nimi, String kysymys) {
 			this.nimi = nimi;
 			this.kysymys = kysymys;
-		}
+	}
 
 	public String getNimi() {
 		return nimi;
@@ -27,6 +32,10 @@ public class Vastaus {
 
 	public void setKysymys(String kysymys) {
 		this.kysymys = kysymys;
+	}
+	
+	public String toString() {
+		return "vastaus: " +this.getNimi() + ", kysymys: "+this.getKysymys();
 	}
 
 }
