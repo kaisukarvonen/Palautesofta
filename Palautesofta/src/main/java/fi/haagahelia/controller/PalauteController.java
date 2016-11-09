@@ -29,7 +29,7 @@ public class PalauteController {
 
 		List<Vastaus> vastaukset = vastausDao.listaaVastaukset();
 		return vastaukset;
-	}
+	} //lallallalllalallallalalalallalallalallala
 	
     @RequestMapping(value="lisaaVastaus", method=RequestMethod.POST)
     @ResponseBody
