@@ -20,6 +20,3 @@ Kyselyn muokkaus ja siihen liittyvä autentikointi (vain kyselyn luoja voi muoka
 
 Digiprojekti1-kurssilta esitetään lisätoiveita ja muutostarpeita kurssin edetessä.
 
-asdasdasdasddaad
-
-testitesti
