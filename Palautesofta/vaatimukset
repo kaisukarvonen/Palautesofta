@@ -28,3 +28,4 @@ Toiminnallisuustavoite:
 2. Haetaan tietokannasta kysymys ja näytetään se näytöllä
 3. Tehdään yksinkertainen lomake johon voi syöttää avoimeen kenttään palautetekstin, joka tallennetaan tietokantaan
 
+http://proto322.haaga-helia.fi:8080/palautesofta-muikkuset/ (toimii koulun sisäverkossa)
