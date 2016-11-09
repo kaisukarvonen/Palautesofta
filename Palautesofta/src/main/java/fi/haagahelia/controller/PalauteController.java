@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import fi.haagahelia.bean.Vastaus;
 import fi.haagahelia.dao.VastausDao;
 
-@Repository
+@Controller
 @RequestMapping(value="*")
 public class PalauteController {
 	
@@ -33,10 +34,10 @@ public class PalauteController {
 	
     @RequestMapping(value="lisaaVastaus", method=RequestMethod.POST)
     @ResponseBody
-    public String lisaaVastaus(Vastaus vastaus) {
+    public Vastaus lisaaVastaus(Vastaus vastaus) {
     	vastausDao.lisaaVastaus(vastaus); 
-    	System.out.println(vastaus); 
-        return "mainpage";
+    	System.out.println(vastaus.getNimi()); 
+        return vastaus;
     }
 	
 
