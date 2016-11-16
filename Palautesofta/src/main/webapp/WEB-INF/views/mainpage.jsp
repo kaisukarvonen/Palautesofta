@@ -29,7 +29,6 @@ body {
  	<form id="lisaaVastausForm">
       <label for="vastaus">Vastaus: </label><br>
       <input type="text" name="vastaus" id="vastaus"/>
-      <!--  <textarea rows="4" cols="20" name="vastaus" id="vastaus"></textarea>-->
       <br/>
       <input type="submit" value="Lisää vastaus"/></form>
       <br><br>
@@ -52,6 +51,8 @@ $(document).ready(function() {
           });
            
           //e.preventDefault(); // prevent actual form submit and page reload
+          //prevent form post javascript
+          //submit --> onclick
 	});
 });
 
