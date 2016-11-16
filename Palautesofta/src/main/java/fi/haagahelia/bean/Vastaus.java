@@ -2,20 +2,14 @@ package fi.haagahelia.bean;
 
 public class Vastaus {
 	private String nimi;
-	private String kysymys;
+	private Kysymys kysymys;
 
 	public Vastaus() {
 		super();
 	}
-	
-	public Vastaus(String nimi) {
-		this.nimi = nimi;
-	}
-	
 
-	public Vastaus(String nimi, String kysymys) {
+	public Vastaus(String nimi) {
 			this.nimi = nimi;
-			this.kysymys = kysymys;
 	}
 
 	public String getNimi() {
@@ -25,17 +19,19 @@ public class Vastaus {
 	public void setNimi(String nimi) {
 		this.nimi = nimi;
 	}
-
-	public String getKysymys() {
+	
+	
+	
+	public Kysymys getKysymys() {
 		return kysymys;
 	}
 
-	public void setKysymys(String kysymys) {
-		this.kysymys = kysymys;
+	public void setKysymys(Kysymys k) {
+		this.kysymys = k; 
 	}
-	
+
 	public String toString() {
-		return "vastaus: " +this.getNimi() + ", kysymys: "+this.getKysymys();
+		return "vastaus: " +this.getNimi();
 	}
 
 }

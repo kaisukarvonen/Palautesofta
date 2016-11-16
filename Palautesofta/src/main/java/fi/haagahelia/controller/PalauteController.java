@@ -28,7 +28,7 @@ public class PalauteController {
 	@RequestMapping(value="vastaukset.json", method=RequestMethod.GET)
 	public @ResponseBody List<Vastaus> listaaVastaukset() {
 
-		List<Vastaus> vastaukset = vastausDao.listaaVastaukset();
+		List<Vastaus> vastaukset = null;
 		return vastaukset;
 	}
 	

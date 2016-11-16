@@ -6,6 +6,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import fi.haagahelia.bean.Kysely;
+import fi.haagahelia.bean.Kysymys;
 import fi.haagahelia.bean.Vastaus;
 
 @Repository
@@ -19,30 +21,35 @@ public class VastausDao {
 	}
 	
 	public List<Vastaus> listaaVastaukset() {
-		String searchSql = "SELECT vastaus_nimi, ky.kysymys_nimi FROM vastaus JOIN kysymys ky "
-				+ "ON vastaus.kysymys_id = ky.kysymys_id";
-		RowMapper<Vastaus> rowmapper = new VastausRowMapper();
-		List<Vastaus> vastaukset = jdbcTemplate.query(searchSql, rowmapper);
-		
-		for (Vastaus vastaus : vastaukset) {
-			//kysymysten mukaan listataan vastauksen (kysymys(nimi, vastausLista))
-		}
-		
+		String searchSql = "SELECT vastaus_nimi, kysymys_id FROM vastaus";
+		RowMapper<Vastaus> mapper = new VastausRowMapper();
+		List<Vastaus> vastaukset = jdbcTemplate.query(searchSql, mapper);
 		return vastaukset;
 	}
 	
 	public List<Kysymys> listaaKysymykset() {
-		String searchSql = "SELECT "
+		String searchSql = "SELECT kysymys_id, kysymys_nimi, kysely_id FROM kysymys";
+		RowMapper<Kysymys> mapper = new KysymysRowMapper();
+		List<Kysymys> kysymykset = jdbcTemplate.query(searchSql, mapper);
+		return kysymykset;
 	}
+	
+	
+	public List<Kysely> listaaKyselyt() {
+		String searchSql = "SELECT kysely_id, kysely_nimi FROM kysely";
+		RowMapper<Kysely> mapper = new KyselyRowMapper();
+		List<Kysely> kyselyt = jdbcTemplate.query(searchSql, mapper);
+		return kyselyt;
+	}
+	
 	
 	public void lisaaVastaus(Vastaus vastaus) {
 		String addSql = "INSERT INTO vastaus (vastaus_nimi,kysymys_id) VALUES (?,?)";
-		Object[] params = new Object[] {vastaus.getNimi(), 2};
+		Object[] params = new Object[] {vastaus.getNimi(), 2}; //kysymys_id nyt siis aina 2
 		try {
 		jdbcTemplate.update(addSql, params);
 		} catch (Exception e) {
 			System.out.println("tietokantaan lis‰‰minen ep‰onnistui");
 		}
 	}
-
 }

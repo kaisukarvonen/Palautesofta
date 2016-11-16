@@ -8,7 +8,7 @@ kysely_id integer NOT NULL auto_increment
 CREATE TABLE kysymys (
 kysymys_id integer NOT NULL auto_increment
 ,kysely_id integer NOT NULL
-,kysymys_nimi varchar(255)
+,kysymys_nimi varchar(255) NOT NULLprojekti
 ,tyyppi_id integer NOT NULL
 ,PRIMARY KEY(kysymys_id)
 ,FOREIGN KEY (kysely_id) REFERENCES kysely (kysely_id)
