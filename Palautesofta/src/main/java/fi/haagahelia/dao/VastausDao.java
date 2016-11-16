@@ -23,7 +23,16 @@ public class VastausDao {
 				+ "ON vastaus.kysymys_id = ky.kysymys_id";
 		RowMapper<Vastaus> rowmapper = new VastausRowMapper();
 		List<Vastaus> vastaukset = jdbcTemplate.query(searchSql, rowmapper);
+		
+		for (Vastaus vastaus : vastaukset) {
+			//kysymysten mukaan listataan vastauksen (kysymys(nimi, vastausLista))
+		}
+		
 		return vastaukset;
+	}
+	
+	public List<Kysymys> listaaKysymykset() {
+		String searchSql = "SELECT "
 	}
 	
 	public void lisaaVastaus(Vastaus vastaus) {
