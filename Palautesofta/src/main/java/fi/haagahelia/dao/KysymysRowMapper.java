@@ -14,7 +14,8 @@ public class KysymysRowMapper implements RowMapper<Kysymys> {
 		Kysymys k = new Kysymys();
 		k.setNimi(rs.getString("kysymys_nimi"));
 		k.setId(rs.getInt("kysymys_id"));
-		k.setKysely(new Kysely(rs.getInt("kysely_id")));
+		k.setKysely(new Kysely(rs.getInt("kysely_id"))); 
+		
 		return k;
 	}
 

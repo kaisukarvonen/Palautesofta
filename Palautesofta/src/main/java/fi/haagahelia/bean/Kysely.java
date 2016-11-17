@@ -3,8 +3,18 @@ package fi.haagahelia.bean;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+@JsonPropertyOrder({"kyselyn nimi", "kysymykset"})
 public class Kysely {
+
+	
+	@JsonProperty("kyselyn nimi")
 	private String nimi;
+	
+	@JsonIgnore
 	private int id;
 	private List<Kysymys> kysymykset = new ArrayList<Kysymys>();
 	

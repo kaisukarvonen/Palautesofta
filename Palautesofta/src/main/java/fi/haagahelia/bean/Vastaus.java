@@ -1,7 +1,13 @@
 package fi.haagahelia.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Vastaus {
+	@JsonProperty("arvo")
 	private String nimi;
+	
+	@JsonIgnore
 	private Kysymys kysymys;
 
 	public Vastaus() {

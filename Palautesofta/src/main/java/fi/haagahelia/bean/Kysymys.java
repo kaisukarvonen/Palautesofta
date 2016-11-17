@@ -3,10 +3,21 @@ package fi.haagahelia.bean;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+@JsonPropertyOrder({"arvo", "vastaukset"})
 public class Kysymys {
+	@JsonProperty("arvo")
 	private String nimi;
+	
+	@JsonIgnore
 	private int id;
+	
 	private List<Vastaus> vastaukset = new ArrayList<Vastaus>();
+	
+	@JsonIgnore
 	private Kysely kysely;
 	
 
@@ -16,6 +27,11 @@ public class Kysymys {
 	
 	public Kysymys(int id) {
 		this.id = id;
+	}
+	
+	public Kysymys(int id, String nimi) {
+		this.id = id;
+		this.nimi = nimi;
 	}
 
 	public List<Vastaus> getVastaukset() {
@@ -62,7 +78,7 @@ public class Kysymys {
 
 
 	public String toString() {
-		return "kysely: "+this.getKysely().getId()+", kysymys: "+ this.getNimi()+ "\nvastaukset: "+this.getVastaukset();
+		return "kysymys: "+ this.getNimi();
 	}
 	
 	

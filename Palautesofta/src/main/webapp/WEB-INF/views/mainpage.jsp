@@ -21,10 +21,9 @@ body {
 <div class="w3-content w3-margin-top" style="max-width:1700px;">
  <div class="w3-twothird">
     <div class="w3-container w3-card-2 w3-white w3-margin-bottom">
-		<h1>Palautesofta</h1>
-		<h3>Vastaukset: </h3>
-			<div id="listaa"></div>
- 	<br><br>
+		
+		
+	<a href="kyselytsisalto.json">JSON response</a>
  	
  	<h3>Miten menee?</h3>
  	<form id="lisaaVastausForm">
