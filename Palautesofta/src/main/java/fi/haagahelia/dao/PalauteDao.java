@@ -11,7 +11,7 @@ import fi.haagahelia.bean.Kysymys;
 import fi.haagahelia.bean.Vastaus;
 
 @Repository
-public class VastausDao {
+public class PalauteDao {
 	
 	@Inject
 	private JdbcTemplate jdbcTemplate;
@@ -41,6 +41,8 @@ public class VastausDao {
 		List<Kysely> kyselyt = jdbcTemplate.query(searchSql, mapper);
 		return kyselyt;
 	}
+	
+
 	
 	
 	public void lisaaVastaus(Vastaus vastaus) {
