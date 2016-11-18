@@ -7,11 +7,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-@JsonPropertyOrder({"kyselyn nimi", "kysymykset"})
+@JsonPropertyOrder({"kyselyn_nimi", "kysymykset"})
 public class Kysely {
 
 	
-	@JsonProperty("kyselyn nimi")
+	@JsonProperty("kyselyn_nimi")
 	private String nimi;
 	
 	@JsonIgnore

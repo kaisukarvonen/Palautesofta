@@ -53,12 +53,22 @@ public class PalauteController {
     	return prettyList; 
     }
     
+    /*@RequestMapping(value="kyselytsimple.json", method=RequestMethod.GET)
+    @ResponseBody
+    public List<Kysely> kysymysSisalto() throws JsonProcessingException {
+    	return listaaKyselytSisalto(); 
+    }*/
+    
     @RequestMapping(value="vastaukset.json", method=RequestMethod.GET)
     @ResponseBody
-    public List<Kysymys> vastausSisalto() throws JsonProcessingException {
-    	
-    	
-    	return palauteDao.listaaKysymykset(); 
+    public List<Vastaus> vastausSisalto() throws JsonProcessingException {
+    	return palauteDao.listaaVastaukset(); 
+    }
+    
+    @RequestMapping(value="kysymykset.json", method=RequestMethod.GET)
+    @ResponseBody
+    public List<Kysymys> kysymysLista() throws JsonProcessingException {
+    	return palauteDao.listaaKysymykset();  
     }
     
     

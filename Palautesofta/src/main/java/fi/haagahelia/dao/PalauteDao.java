@@ -28,7 +28,7 @@ public class PalauteDao {
 	}
 	
 	public List<Kysymys> listaaKysymykset() {
-		String searchSql = "SELECT kysymys_id, kysymys_nimi, kysely_id FROM kysymys";
+		String searchSql = "SELECT kysymys_id, kysymys_nimi, kysely_id FROM kysymys ORDER BY kysymys_nimi";
 		RowMapper<Kysymys> mapper = new KysymysRowMapper();
 		List<Kysymys> kysymykset = jdbcTemplate.query(searchSql, mapper);
 		return kysymykset;

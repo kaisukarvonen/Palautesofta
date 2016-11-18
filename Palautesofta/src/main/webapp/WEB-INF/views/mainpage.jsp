@@ -26,31 +26,52 @@ body {
 	<a href="kyselytsisalto.json">JSON response</a>
 	<div id="listaa"></div>
  	
- 	<h3>Kysymys: Onko kivaa?</h3>
  	<form id="lisaaVastausForm">
+ 	
+ 	
+ 	<h4><div id="kysymys"></h4>
       <label for="vastaus">Vastaus: </label><br>
       <input type="text" name="vastaus" id="vastaus"/>
-      <br/>
-      <input type="submit" value="Lisää vastaus"/></form>
+      <br><br></div>
+      
+      
+      
+      <input type="submit" value="Lisää vastaus"/>
+      </form>
       <br><br>
  	</div>
  </div>
 </div>
  
 <script>
-$.getJSON("vastaukset.json", function (lista) {
+$.getJSON("kyselytsimple.json", function (json) {
 		var list = [];
-		$.each(lista, function(key, value){
-	       list.push(value.arvo + " "+value.vastaukset+"<br>");
+		$.each(json, function(key, value){
+	       list.push(value.kyselyn_nimi + "<br>");
 	    });
 		$("#listaa").append(list);
 });
 
+$.getJSON("kysymysLista.json", function (object) {
+	var list = [];
+	$.each(object, function(key, value){
+		
+       // kuinka monta diviä löytyy nimellä kysymys kuinka monta kysymysta tietokannasta
+       // jos divejä vähemmän, lisää erotus
+       //metodit: laske kysymys-divit, laske kysymysLista oliot, jos erisuuri 
+    });
+	$("#listaa").append(list);
+});
+
+
+
+
+
 $(document).ready(function() { 
 	$('#lisaaVastausForm').submit(function(e) {
-        $.post('${pageContext.request.contextPath}/lisaaVastaus', $(this).serialize(), function(response) {
+        $.post('${pageContext.request.contextPath}/lisaaVastaus', 
+        		$(this).serialize(), function(response) {
           });
-           
           //e.preventDefault(); // prevent actual form submit and page reload
           //prevent form post javascript
           //submit --> onclick
