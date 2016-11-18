@@ -24,8 +24,9 @@ body {
 		
 		
 	<a href="kyselytsisalto.json">JSON response</a>
+	<div id="listaa"></div>
  	
- 	<h3>Miten menee?</h3>
+ 	<h3>Kysymys: Onko kivaa?</h3>
  	<form id="lisaaVastausForm">
       <label for="vastaus">Vastaus: </label><br>
       <input type="text" name="vastaus" id="vastaus"/>
@@ -40,7 +41,7 @@ body {
 $.getJSON("vastaukset.json", function (lista) {
 		var list = [];
 		$.each(lista, function(key, value){
-	       list.push(value.kysymys + " "+value.nimi+"<br>");
+	       list.push(value.arvo + " "+value.vastaukset+"<br>");
 	    });
 		$("#listaa").append(list);
 });

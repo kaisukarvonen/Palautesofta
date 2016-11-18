@@ -47,7 +47,7 @@ public class PalauteDao {
 	
 	public void lisaaVastaus(Vastaus vastaus) {
 		String addSql = "INSERT INTO vastaus (vastaus_nimi,kysymys_id) VALUES (?,?)";
-		Object[] params = new Object[] {vastaus.getNimi(), 2}; //kysymys_id nyt siis aina 2
+		Object[] params = new Object[] {vastaus.getNimi(), 3}; //kysymys_id nyt siis aina 2
 		try {
 		jdbcTemplate.update(addSql, params);
 		} catch (Exception e) {

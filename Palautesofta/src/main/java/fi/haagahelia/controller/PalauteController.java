@@ -31,6 +31,8 @@ public class PalauteController {
 		return "mainpage";
 	}
 	
+	
+	
 
 	
     @RequestMapping(value="lisaaVastaus", method=RequestMethod.POST)
@@ -49,6 +51,14 @@ public class PalauteController {
     	String prettyList = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(listaaKyselytSisalto());
     	
     	return prettyList; 
+    }
+    
+    @RequestMapping(value="vastaukset.json", method=RequestMethod.GET)
+    @ResponseBody
+    public List<Kysymys> vastausSisalto() throws JsonProcessingException {
+    	
+    	
+    	return palauteDao.listaaKysymykset(); 
     }
     
     
