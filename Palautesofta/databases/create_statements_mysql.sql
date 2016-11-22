@@ -23,6 +23,7 @@ admin_authority_id integer NOT NULL auto_increment
 
 CREATE TABLE kysely (
 kysely_id integer NOT NULL auto_increment
+,admin_id integer NOT NULL
 ,kysely_nimi varchar(255) NOT NULL
 ,kysely_kuvaus varchar(255)
 ,PRIMARY KEY(kysely_id)
