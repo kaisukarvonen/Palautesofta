@@ -39,7 +39,7 @@ tyyppi_id integer NOT NULL
 CREATE TABLE kysymys (
 kysymys_id integer NOT NULL auto_increment
 ,kysely_id integer NOT NULL
-,kysymys_nimi varchar(255) NOT NULLprojekti
+,kysymys_nimi varchar(255) NOT NULL
 ,tyyppi_id integer NOT NULL
 ,PRIMARY KEY(kysymys_id)
 ,FOREIGN KEY (kysely_id) REFERENCES kysely (kysely_id) ON DELETE CASCADE
