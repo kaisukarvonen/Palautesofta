@@ -15,7 +15,7 @@ admin_id integer NOT NULL auto_increment
 CREATE TABLE admin_authority (
 admin_authority_id integer NOT NULL auto_increment
 ,admin_id integer NOT NULL,
-,authority_id integer NOT NULL,
+,authority_id integer NOT NULL
 ,PRIMARY KEY(admin_authority_id)
 ,FOREIGN KEY (admin_id) REFERENCES admin(admin_id) ON DELETE NO ACTION ON UPDATE NO ACTION,
 ,FOREIGN KEY (authority_id) REFERENCES authority(authority_id) ON DELETE NO ACTION ON UPDATE NO ACTION
