@@ -31,10 +31,6 @@ public class PalauteController {
 		return "mainpage";
 	}
 	
-	
-	
-
-	
     @RequestMapping(value="lisaaVastaus", method=RequestMethod.POST)
     @ResponseBody
     public Vastaus lisaaVastaus(Vastaus vastaus) {
@@ -43,6 +39,15 @@ public class PalauteController {
     	
         return vastaus;
     }
+    
+    @RequestMapping(value="lisaaMontaVastausta", method=RequestMethod.POST)
+    @ResponseBody
+    public List<Vastaus> lisaaMontaVastausta(List<Vastaus> lisatytVastaukset) {
+    	//metodi useiden vastausten lis‰‰miseen tietokantaan (PalauteDaoon)
+    	
+        return lisatytVastaukset; 
+    }
+    
     
     @RequestMapping(value="kyselytsisalto.json", method=RequestMethod.GET)
     @ResponseBody
@@ -53,19 +58,19 @@ public class PalauteController {
     	return prettyList; 
     }
     
-    /*@RequestMapping(value="kyselytsimple.json", method=RequestMethod.GET)
+    @RequestMapping(value="kyselytsimple.json", method=RequestMethod.GET)
     @ResponseBody
     public List<Kysely> kysymysSisalto() throws JsonProcessingException {
     	return listaaKyselytSisalto(); 
-    }*/
+    }
     
-    @RequestMapping(value="vastaukset.json", method=RequestMethod.GET)
+    @RequestMapping(value="vastausLista.json", method=RequestMethod.GET)
     @ResponseBody
     public List<Vastaus> vastausSisalto() throws JsonProcessingException {
     	return palauteDao.listaaVastaukset(); 
     }
     
-    @RequestMapping(value="kysymykset.json", method=RequestMethod.GET)
+    @RequestMapping(value="kysymysLista.json", method=RequestMethod.GET)
     @ResponseBody
     public List<Kysymys> kysymysLista() throws JsonProcessingException {
     	return palauteDao.listaaKysymykset();  

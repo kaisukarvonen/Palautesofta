@@ -24,24 +24,22 @@ body {
 		
 		
 	<a href="kyselytsisalto.json">JSON response</a>
-	<div id="listaa"></div>
+	<div id="listaaKyselyt"></div>
  	
  	<form id="lisaaVastausForm">
  	
- 	
- 	<h4><div id="kysymys"></h4>
+ 	<h4><div id="kysymys1">Kysymys</div></h4>
       <label for="vastaus">Vastaus: </label><br>
-      <input type="text" name="vastaus" id="vastaus"/>
-      <br><br></div>
-      
-      
-      
+      <input type="text" name="vastaus" id="vastaus1"/>
+      <br><br>
       <input type="submit" value="Lisää vastaus"/>
+      
       </form>
       <br><br>
  	</div>
  </div>
 </div>
+
  
 <script>
 $.getJSON("kyselytsimple.json", function (json) {
@@ -49,18 +47,21 @@ $.getJSON("kyselytsimple.json", function (json) {
 		$.each(json, function(key, value){
 	       list.push(value.kyselyn_nimi + "<br>");
 	    });
-		$("#listaa").append(list);
+		$("#listaaKyselyt").append(list);
 });
 
 $.getJSON("kysymysLista.json", function (object) {
-	var list = [];
+	var kysymysmra = 0;
+	var kysymysNimet = [];
 	$.each(object, function(key, value){
-		
-       // kuinka monta diviä löytyy nimellä kysymys kuinka monta kysymysta tietokannasta
-       // jos divejä vähemmän, lisää erotus
-       //metodit: laske kysymys-divit, laske kysymysLista oliot, jos erisuuri 
-    });
-	$("#listaa").append(list);
+		kysymysmra++;
+		kysymysNimet.push(value.arvo);
+	});
+	console.log(kysymysNimet);
+	/* fronttihommaa...
+       kuinka monta diviä löytyy nimellä kysymys kuinka monta kysymysta tietokannasta
+       jos divejä vähemmän, lisää erotus
+       metodit: laske kysymys-divit, laske kysymysLista oliot, jos erisuuri */
 });
 
 
@@ -72,16 +73,12 @@ $(document).ready(function() {
         $.post('${pageContext.request.contextPath}/lisaaVastaus', 
         		$(this).serialize(), function(response) {
           });
-          //e.preventDefault(); // prevent actual form submit and page reload
-          //prevent form post javascript
-          //submit --> onclick
+          /*e.preventDefault(); // prevent actual form submit and page reload
+          prevent form post javascript
+          submit --> onclick*/
 	});
 });
-
-
-
 </script>
- 
  
 </body>
 </html>
