@@ -1,10 +1,7 @@
 package fi.haagahelia.controller;
 
-import java.util.ArrayList;
 import java.util.List;
-
 import javax.inject.Inject;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -61,10 +58,10 @@ public class PalauteController {
     @RequestMapping(value="kyselytsimple.json", method=RequestMethod.GET)
     @ResponseBody
     public List<Kysely> kysymysSisalto() throws JsonProcessingException {
-    	return listaaKyselytSisalto(); 
+    	return listaaKyselytSisalto();  
     }
     
-    @RequestMapping(value="vastausLista.json", method=RequestMethod.GET)
+    /*@RequestMapping(value="vastausLista.json", method=RequestMethod.GET)
     @ResponseBody
     public List<Vastaus> vastausSisalto() throws JsonProcessingException {
     	return palauteDao.listaaVastaukset(); 
@@ -72,9 +69,12 @@ public class PalauteController {
     
     @RequestMapping(value="kysymysLista.json", method=RequestMethod.GET)
     @ResponseBody
-    public List<Kysymys> kysymysLista() throws JsonProcessingException {
-    	return palauteDao.listaaKysymykset();  
-    }
+    public String kysymysLista() throws JsonProcessingException {
+    	ObjectMapper mapper = new ObjectMapper();
+    	String prettyList = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(palauteDao.listaaKysymykset());
+    	
+    	return prettyList;  
+    }*/
     
     
     public List<Kysely> listaaKyselytSisalto() {
@@ -98,9 +98,6 @@ public class PalauteController {
 			}
 		}
     	return kyselyt;
-    	
     }
-
-	
 
 }

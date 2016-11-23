@@ -45,26 +45,10 @@ body {
 $.getJSON("kyselytsimple.json", function (json) {
 		var list = [];
 		$.each(json, function(key, value){
-	       list.push(value.kyselyn_nimi + "<br>");
+	       list.push(key+", "+value.kyselyn_nimi + "<br>");
 	    });
 		$("#listaaKyselyt").append(list);
 });
-
-$.getJSON("kysymysLista.json", function (object) {
-	var kysymysmra = 0;
-	var kysymysNimet = [];
-	$.each(object, function(key, value){
-		kysymysmra++;
-		kysymysNimet.push(value.arvo);
-	});
-	console.log(kysymysNimet);
-	/* fronttihommaa...
-       kuinka monta diviä löytyy nimellä kysymys kuinka monta kysymysta tietokannasta
-       jos divejä vähemmän, lisää erotus
-       metodit: laske kysymys-divit, laske kysymysLista oliot, jos erisuuri */
-});
-
-
 
 
 
