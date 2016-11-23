@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Vastaus {
-	@JsonProperty("arvo")
+	@JsonProperty("vastaus_arvo")
 	private String nimi;
 	
 	@JsonIgnore

@@ -45,7 +45,7 @@ public class PalauteController {
     public List<Vastaus> lisaaMontaVastausta(List<Vastaus> lisatytVastaukset) {
     	//metodi useiden vastausten lisäämiseen tietokantaan (PalauteDaoon)
     	
-        return lisatytVastaukset; 
+        return lisatytVastaukset;  
     }
     
     

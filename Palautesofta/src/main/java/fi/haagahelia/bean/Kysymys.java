@@ -7,12 +7,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-@JsonPropertyOrder({"arvo", "vastaukset"})
+@JsonPropertyOrder({"kysymys_arvo", "id", "vastaukset"})
 public class Kysymys {
-	@JsonProperty("arvo")
+	@JsonProperty("kysymys_arvo")
 	private String nimi;
 	
-	@JsonIgnore
 	private int id;
 	
 	private List<Vastaus> vastaukset = new ArrayList<Vastaus>();
