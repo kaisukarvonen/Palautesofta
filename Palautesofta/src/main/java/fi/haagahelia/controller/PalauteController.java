@@ -13,14 +13,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import fi.haagahelia.bean.Kysely;
 import fi.haagahelia.bean.Kysymys;
 import fi.haagahelia.bean.Vastaus;
-import fi.haagahelia.dao.PalauteDao;
+import fi.haagahelia.dao.PalauteService;
 
 @Controller
 @RequestMapping(value="*")
 public class PalauteController {
 	
 	@Inject
-	private PalauteDao palauteDao;
+	private PalauteService palauteservice;
 
 	
 	@RequestMapping(value="/main", method=RequestMethod.GET)
@@ -28,10 +28,19 @@ public class PalauteController {
 		return "mainpage";
 	}
 	
+	@RequestMapping(value="kysymystyyppilista.json", method=RequestMethod.GET)
+	@ResponseBody
+	public String listaaKysymysTyypit() throws JsonProcessingException {
+		ObjectMapper mapper = new ObjectMapper();
+    	String prettyList = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(palauteservice.listaaKysymysTyypit());
+    	
+    	return prettyList;
+	} 
+	
     @RequestMapping(value="lisaaVastaus", method=RequestMethod.POST)
     @ResponseBody
     public Vastaus lisaaVastaus(Vastaus vastaus) {
-    	palauteDao.lisaaVastaus(vastaus); 
+    	palauteservice.lisaaVastaus(vastaus); 
     	System.out.println("vastaus:" +vastaus.getNimi()); 
     	
         return vastaus;
@@ -40,7 +49,7 @@ public class PalauteController {
     @RequestMapping(value="lisaaMontaVastausta", method=RequestMethod.POST)
     @ResponseBody
     public List<Vastaus> lisaaMontaVastausta(List<Vastaus> lisatytVastaukset) {
-    	//metodi useiden vastausten lis‰‰miseen tietokantaan (PalauteDaoon)
+    	palauteservice.lisaaMontaVastausta(lisatytVastaukset); 
     	
         return lisatytVastaukset;  
     }
@@ -52,7 +61,7 @@ public class PalauteController {
     	ObjectMapper mapper = new ObjectMapper();
     	String prettyList = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(listaaKyselytSisalto());
     	
-    	return prettyList; 
+    	return prettyList;
     }
     
     @RequestMapping(value="kyselytsimple.json", method=RequestMethod.GET)
@@ -64,14 +73,14 @@ public class PalauteController {
     /*@RequestMapping(value="vastausLista.json", method=RequestMethod.GET)
     @ResponseBody
     public List<Vastaus> vastausSisalto() throws JsonProcessingException {
-    	return palauteDao.listaaVastaukset(); 
+    	return palauteservice.listaaVastaukset(); 
     }
     
     @RequestMapping(value="kysymysLista.json", method=RequestMethod.GET)
     @ResponseBody
     public String kysymysLista() throws JsonProcessingException {
     	ObjectMapper mapper = new ObjectMapper();
-    	String prettyList = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(palauteDao.listaaKysymykset());
+    	String prettyList = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(palauteservice.listaaKysymykset());
     	
     	return prettyList;  
     }*/
@@ -79,8 +88,8 @@ public class PalauteController {
     
     public List<Kysely> listaaKyselytSisalto() {
     	
-    	List<Vastaus> vastaukset = palauteDao.listaaVastaukset();
-    	List<Kysymys> kysymykset = palauteDao.listaaKysymykset();
+    	List<Vastaus> vastaukset = palauteservice.listaaVastaukset();
+    	List<Kysymys> kysymykset = palauteservice.listaaKysymykset();
     	
     	for (Vastaus v : vastaukset) {
 			for (Kysymys k : kysymykset) {
@@ -89,7 +98,7 @@ public class PalauteController {
 				}
 			}
 		}
-    	List<Kysely> kyselyt = palauteDao.listaaKyselyt();
+    	List<Kysely> kyselyt = palauteservice.listaaKyselyt();
     	for (Kysely kysely : kyselyt) {
 			for (Kysymys k : kysymykset) {
 				if (kysely.getId() == k.getKysely().getId()) {

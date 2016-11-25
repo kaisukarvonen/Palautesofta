@@ -23,7 +23,10 @@ body {
     <div class="w3-container w3-card-2 w3-white w3-margin-bottom">
 		
 		
-	<a href="kyselytsisalto.json">JSON response</a>
+	<a href="kyselytsisalto.json">Kyselyt json-datana</a><br>
+	<a href="kysymystyyppilista.json">Kysymystyypit</a><br><br>
+	
+	Kyselyjen nimet
 	<div id="listaaKyselyt"></div>
  	
  	<form id="lisaaVastausForm">
@@ -45,7 +48,7 @@ body {
 $.getJSON("kyselytsimple.json", function (json) {
 		var list = [];
 		$.each(json, function(key, value){
-	       list.push(key+", "+value.kyselyn_nimi + "<br>");
+	       list.push(value.kyselyn_nimi + "<br>");
 	    });
 		$("#listaaKyselyt").append(list);
 });

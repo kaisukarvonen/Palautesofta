@@ -13,10 +13,11 @@ import org.springframework.stereotype.Repository;
 
 import fi.haagahelia.bean.Kysely;
 import fi.haagahelia.bean.Kysymys;
+import fi.haagahelia.bean.Tyyppi;
 import fi.haagahelia.bean.Vastaus;
 
 @Repository
-public class PalauteDao {
+public class PalauteDao implements PalauteService {
 	
 	@Inject
 	private JdbcTemplate jdbcTemplate;
@@ -32,8 +33,15 @@ public class PalauteDao {
 		return vastaukset;
 	}
 	
+	public List<Tyyppi> listaaKysymysTyypit() {
+		String searchSql = "SELECT tyyppi_id, tyyppi_nimi FROM kysymys_tyyppi";
+		RowMapper<Tyyppi> mapper = new TyyppiRowMapper();
+		List<Tyyppi> tyypit = jdbcTemplate.query(searchSql, mapper);
+		return tyypit;
+	}
+	
 	public List<Kysymys> listaaKysymykset() {
-		String searchSql = "SELECT kysymys_id, kysymys_nimi, kysely_id FROM kysymys ORDER BY kysymys_nimi";
+		String searchSql = "SELECT kysymys_id, kysymys_nimi, kysely_id, tyyppi_id FROM kysymys ORDER BY kysymys_nimi";
 		RowMapper<Kysymys> mapper = new KysymysRowMapper();
 		List<Kysymys> kysymykset = jdbcTemplate.query(searchSql, mapper);
 		return kysymykset;
