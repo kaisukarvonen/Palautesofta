@@ -1,8 +1,13 @@
 package fi.haagahelia.dao;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 import javax.inject.Inject;
+
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCallback;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
@@ -43,18 +48,21 @@ public class PalauteDao {
 	}
 	
 
-	public void lisaaMontaVastaus() {
-		
+	public void lisaaMontaVastausta(List<Vastaus> vastaukset) {
+		for (Vastaus vastaus : vastaukset) {
+			lisaaVastaus(vastaus);
+		}
 	}
 	
-	public void lisaaVastaus(Vastaus vastaus) {
+	public Boolean lisaaVastaus(final Vastaus vastaus) { 
 		String addSql = "INSERT INTO vastaus (vastaus_nimi,kysymys_id) VALUES (?,?)";
-		Object[] params = new Object[] {vastaus.getNimi(), 3}; //kysymys_id nyt siis aina 2
-		//Prepare
-		try {
-		jdbcTemplate.update(addSql, params);
-		} catch (Exception e) {
-			System.out.println("tietokantaan lis‰‰minen ep‰onnistui");
-		}
+	    return jdbcTemplate.execute(addSql, new PreparedStatementCallback<Boolean>(){   
+	        public Boolean doInPreparedStatement(PreparedStatement ps)  
+	                throws SQLException, DataAccessException {  
+	            ps.setString(1, vastaus.getNimi());      
+	            ps.setInt(2,vastaus.getKysymys().getId());    
+	            return ps.execute();        
+	        }
+	    });
 	}
 }
