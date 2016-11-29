@@ -7,9 +7,9 @@ public class Vastaus {
 	@JsonProperty("vastaus_arvo")
 	private String nimi;
 	
-	@JsonIgnore
+	@JsonProperty("kysymys")
 	private Kysymys kysymys;
-
+ 
 	public Vastaus() {
 		super();
 	}

@@ -3,6 +3,7 @@ package fi.haagahelia.controller;
 import java.util.List;
 import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -39,9 +40,9 @@ public class PalauteController {
 	
     @RequestMapping(value="lisaaVastaus", method=RequestMethod.POST)
     @ResponseBody
-    public Vastaus lisaaVastaus(Vastaus vastaus) {
+    public Vastaus lisaaVastaus(@RequestBody Vastaus vastaus) {
     	palauteservice.lisaaVastaus(vastaus); 
-    	System.out.println("vastaus:" +vastaus.getNimi()); 
+    	System.out.println("vastaus_arvo:" +vastaus.getNimi() + ", kysymys_id:"+vastaus.getKysymys().getId()); 
     	
         return vastaus;
     }

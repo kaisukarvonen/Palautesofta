@@ -29,15 +29,16 @@ body {
 	Kyselyjen nimet
 	<div id="listaaKyselyt"></div>
  	
- 	<form id="lisaaVastausForm">
  	
- 	<h4><div id="kysymys1">Kysymys</div></h4>
-      <label for="vastaus">Vastaus: </label><br>
-      <input type="text" name="vastaus" id="vastaus1"/>
+ 	
+ 	<h4><div id="kysymys1">Minkä arvosanan antaisit kurssista?</div></h4>
+	  <input type="radio" name="arvosana" value="hyva"> Hyvä<br>
+	  <input type="radio" name="arvosana" value="keskiverto"> Keskiverto<br>
+	  <input type="radio" name="arvosana" value="huono"> Huono
       <br><br>
-      <input type="submit" value="Lisää vastaus"/>
+      <input type="button" id="lisaaVastaus" value="Lisää vastaus"/>
       
-      </form>
+      
       <br><br>
  	</div>
  </div>
@@ -56,15 +57,37 @@ $.getJSON("kyselytsimple.json", function (json) {
 
 
 $(document).ready(function() { 
-	$('#lisaaVastausForm').submit(function(e) {
-        $.post('${pageContext.request.contextPath}/lisaaVastaus', 
+	$('#lisaaVastaus').click(function() {
+		var valinta = $('input[name="arvosana"]:checked').val();		
+        //var kysymysId6 = {kysymys_id:6};
+        var vastaus = {vastaus_arvo: valinta, kysymys: { kysymys_id:6}};
+        console.log(vastaus.vastaus_arvo + ", " + vastaus.kysymys.kysymys_id);
+        
+        $.ajax({
+            url: '${pageContext.request.contextPath}/lisaaVastaus',
+            type: 'POST',
+            data: JSON.stringify(vastaus),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function(data){
+            	console.log("onnistui");
+            },
+            failure: function(errMsg) {
+                console.log("failed");
+            }
+        });
+		
+        /*$.post('${pageContext.request.contextPath}/lisaaVastaus', 
         		$(this).serialize(), function(response) {
           });
-          /*e.preventDefault(); // prevent actual form submit and page reload
+          e.preventDefault(); // prevent actual form submit and page reload
           prevent form post javascript
           submit --> onclick*/
 	});
 });
+
+
+
 </script>
  
 </body>
