@@ -68,7 +68,7 @@ public class PalauteDao implements PalauteService {
 	        public Boolean doInPreparedStatement(PreparedStatement ps)  
 	                throws SQLException, DataAccessException {  
 	            ps.setString(1, vastaus.getNimi());      
-	            ps.setInt(2,vastaus.getKysymys().getId());    
+	            ps.setInt(2,vastaus.getKysymysId());    
 	            return ps.execute();        
 	        }
 	    });

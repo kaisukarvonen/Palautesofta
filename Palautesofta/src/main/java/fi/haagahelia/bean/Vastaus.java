@@ -1,14 +1,13 @@
 package fi.haagahelia.bean;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Vastaus {
 	@JsonProperty("vastaus_arvo")
 	private String nimi;
 	
-	@JsonProperty("kysymys")
-	private Kysymys kysymys;
+	@JsonProperty("kysymys_id")
+	private int kysymysId;
  
 	public Vastaus() {
 		super();
@@ -28,12 +27,12 @@ public class Vastaus {
 	
 	
 	
-	public Kysymys getKysymys() {
-		return kysymys;
+	public int getKysymysId() {
+		return kysymysId;
 	}
 
-	public void setKysymys(Kysymys k) {
-		this.kysymys = k; 
+	public void setKysymysId(int id) {
+		this.kysymysId = id; 
 	}
 
 	public String toString() {

@@ -42,7 +42,7 @@ public class PalauteController {
     @ResponseBody
     public Vastaus lisaaVastaus(@RequestBody Vastaus vastaus) {
     	palauteservice.lisaaVastaus(vastaus); 
-    	System.out.println("vastaus_arvo:" +vastaus.getNimi() + ", kysymys_id:"+vastaus.getKysymys().getId()); 
+    	System.out.println("vastaus_arvo:" +vastaus.getNimi() + ", kysymys_id:"+vastaus.getKysymysId()); 
     	
         return vastaus;
     }
@@ -94,7 +94,7 @@ public class PalauteController {
     	
     	for (Vastaus v : vastaukset) {
 			for (Kysymys k : kysymykset) {
-				if (v.getKysymys().getId() == k.getId()) {
+				if (v.getKysymysId() == k.getId()) {
 					k.addToList(v); 
 				}
 			}

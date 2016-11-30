@@ -13,7 +13,7 @@ public class VastausRowMapper implements RowMapper<Vastaus> {
 	public Vastaus mapRow(ResultSet rs, int row) throws SQLException {
 		Vastaus v = new Vastaus();
 		v.setNimi(rs.getString("vastaus_nimi"));
-		v.setKysymys(new Kysymys(rs.getInt("kysymys_id"))); 
+		v.setKysymysId(rs.getInt("kysymys_id")); 
 		return v;
 	}
 

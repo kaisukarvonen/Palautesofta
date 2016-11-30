@@ -60,8 +60,8 @@ $(document).ready(function() {
 	$('#lisaaVastaus').click(function() {
 		var valinta = $('input[name="arvosana"]:checked').val();		
         //var kysymysId6 = {kysymys_id:6};
-        var vastaus = {vastaus_arvo: valinta, kysymys: { kysymys_id:6}};
-        console.log(vastaus.vastaus_arvo + ", " + vastaus.kysymys.kysymys_id);
+        var vastaus = {vastaus_arvo: valinta, kysymys_id:6};
+        console.log(vastaus.vastaus_arvo + ", " + vastaus.kysymys_id);
         
         $.ajax({
             url: '${pageContext.request.contextPath}/lisaaVastaus',
