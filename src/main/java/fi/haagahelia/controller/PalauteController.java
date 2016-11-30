@@ -23,7 +23,7 @@ public class PalauteController {
 	@Inject
 	private PalauteService palauteservice;
 
-	
+	//testi
 	@RequestMapping(value="/main", method=RequestMethod.GET)
 	public String main() {
 		return "mainpage";
