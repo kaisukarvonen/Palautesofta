@@ -49,7 +49,7 @@ public class PalauteController {
     
     @RequestMapping(value="lisaaMontaVastausta", method=RequestMethod.POST)
     @ResponseBody
-    public List<Vastaus> lisaaMontaVastausta(List<Vastaus> lisatytVastaukset) {
+    public List<Vastaus> lisaaMontaVastausta(@RequestBody List<Vastaus> lisatytVastaukset) {
     	palauteservice.lisaaMontaVastausta(lisatytVastaukset); 
     	
         return lisatytVastaukset;  
@@ -71,21 +71,7 @@ public class PalauteController {
     	return listaaKyselytSisalto();  
     }
     
-    /*@RequestMapping(value="vastausLista.json", method=RequestMethod.GET)
-    @ResponseBody
-    public List<Vastaus> vastausSisalto() throws JsonProcessingException {
-    	return palauteservice.listaaVastaukset(); 
-    }
-    
-    @RequestMapping(value="kysymysLista.json", method=RequestMethod.GET)
-    @ResponseBody
-    public String kysymysLista() throws JsonProcessingException {
-    	ObjectMapper mapper = new ObjectMapper();
-    	String prettyList = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(palauteservice.listaaKysymykset());
-    	
-    	return prettyList;  
-    }*/
-    
+    //testiä
     
     public List<Kysely> listaaKyselytSisalto() {
     	

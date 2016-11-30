@@ -35,8 +35,18 @@ INSERT INTO kysymys
 ,tyyppi_id)
 VALUES
 (2
-,'Vaiko eik√∂?'
+,'Vaiko eik‰?'
 ,1);
+
+
+INSERT INTO kysymys
+(kysely_id
+,kysymys_nimi
+,tyyppi_id)
+VALUES
+(3
+,'Mink‰ arvosanan antaisit kurssista?'
+,2);
 
 INSERT INTO vastaus
 (kysymys_id
