@@ -1,0 +1,31 @@
+Softan vaatimukset: (*-merkityt ei pakollisia mutta nice to have)
+
+- Lisätä feedbackkyselyn, jossa on kysymyksiä. Kysymykset voivat olla (prioriteettijärjestyksessä) tyyppiä skaala 1-5, multiple choice,
+checkbox, avoin teksti. Kysymykset voivat olla vapaaehtoisia tai pakollisia.
+
+- Kyselyyn annetut yksittäiset vastaukset voi tallentaa tietokantaan.
+
+* Linkki kyselyn täyttämiseen, palautteen voi antaa vain kerran??
+
+
+Admin:
+- Kyselyyn annetut kaikki vastaukset voi hakea.
+
+- Kyselyn kysymykset voi hakea.
+
+- Kyselyyn voi lisätä kysymyksiä: jokin template josta voi luoda uusia kysymyksiä?
+
+- Kyselyn voi deployata/undeployata
+
+- Kyselyn muokkaus: olemassaolevien kysymysten muokkaus
+
+
+Digiprojekti1-kurssilta esitetään lisätoiveita ja muutostarpeita kurssin edetessä.
+
+Toiminnallisuustavoite:
+
+1. Syötetään avoin kysymys (Taru)
+2. Haetaan tietokannasta kysymys ja näytetään se näytöllä
+3. Tehdään yksinkertainen lomake johon voi syöttää avoimeen kenttään palautetekstin, joka tallennetaan tietokantaan
+
+http://proto322.haaga-helia.fi:8080/palautesofta-muikkuset2/ (toimii koulun sisäverkossa)
