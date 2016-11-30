@@ -23,7 +23,7 @@ public class PalauteController {
 	@Inject
 	private PalauteService palauteservice;
 
-	//testi
+	//toimiiko
 	@RequestMapping(value="/main", method=RequestMethod.GET)
 	public String main() {
 		return "mainpage";
@@ -52,7 +52,7 @@ public class PalauteController {
     public List<Vastaus> lisaaMontaVastausta(@RequestBody List<Vastaus> lisatytVastaukset) {
     	palauteservice.lisaaMontaVastausta(lisatytVastaukset); 
     	
-        return lisatytVastaukset;  
+        return lisatytVastaukset;
     }
     
     
