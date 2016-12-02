@@ -36,7 +36,8 @@ public class PalauteController {
     	String prettyList = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(palauteservice.listaaKysymysTyypit());
     	
     	return prettyList;
-	} 
+	}
+
 	
     @RequestMapping(value="lisaaVastaus", method=RequestMethod.POST)
     @ResponseBody
@@ -46,6 +47,17 @@ public class PalauteController {
     	
         return vastaus;
     }
+    
+    
+    @RequestMapping(value="lisaaKysymys", method=RequestMethod.POST)
+    @ResponseBody
+    public Kysymys lisaaKysymys(@RequestBody Kysymys kysymys) {
+    	palauteservice.lisaaKysymys(kysymys); 
+    	System.out.println("kysymys_arvo:" +kysymys.getNimi() + ", tyyppi_id:"+kysymys.getTyyppiId()); 
+    	
+        return kysymys; 
+    }
+    
     
     @RequestMapping(value="lisaaMontaVastausta", method=RequestMethod.POST)
     @ResponseBody

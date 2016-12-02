@@ -22,6 +22,8 @@ public interface PalauteService {
 	
 	public Boolean lisaaVastaus(final Vastaus vastaus);
 	
+	public Boolean lisaaKysymys(final Kysymys kysymys);
+	
 	public List<Tyyppi> listaaKysymysTyypit();
 	
 	

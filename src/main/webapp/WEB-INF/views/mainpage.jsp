@@ -36,10 +36,25 @@ body {
 	  <input type="radio" name="arvosana" value="keskiverto"> Keskiverto<br>
 	  <input type="radio" name="arvosana" value="huono"> Huono
       <br><br>
-      <input type="button" id="lisaaVastaus" value="Lis‰‰ vastaus"/>
       
+      <h4><div id="kysymys2">Onko el‰m‰ mukavaa?</div></h4>
+      <input type="text" id="kysymys2_arvo"/>
+      <br>
+      <input type="button" id="lisaaMontaVastausta" value="Tallenna vastaukset"/>
+      
+      <div id="ajaxMessage"></div>
       
       <br><br>
+      
+      <h4>Lis‰‰ uusi kysymys</h4>
+      <b>Tyyppi:</b><br>
+      <input type="radio" name="kysymystyyppi" value="avoin"> Avoin kysymys<br>
+	  <input type="radio" name="kysymystyyppi" value="radiobutton"> Radiobutton<br>
+	  <input type="radio" name="kysymystyyppi" value="skaala"> Skaala<br>
+	  Kysymys: <input type="text" id="uusi_kysymys1"/><br>
+	  <input type="button" id="lisaaKysymys" value="Lis‰‰ kysymys"/>
+	  
+	  <br><br>
  	</div>
  </div>
 </div>
@@ -57,33 +72,74 @@ $.getJSON("kyselytsimple.json", function (json) {
 
 
 $(document).ready(function() { 
-	$('#lisaaVastaus').click(function() {
-		var valinta = $('input[name="arvosana"]:checked').val();		
-        //var kysymysId6 = {kysymys_id:6};
-        var vastaus = {vastaus_arvo: valinta, kysymys_id:6};
-        console.log(vastaus.vastaus_arvo + ", " + vastaus.kysymys_id);
+	$('#lisaaMontaVastausta').click(function() {
+		var kysymys1Arvo = $('input[name="arvosana"]:checked').val();
+		var kysymys2Arvo = $("#kysymys2_arvo").val();
+        var kysymys1Vastaus = {vastaus_arvo: kysymys1Arvo, kysymys_id:6};
+        var kysymys2Vastaus = {vastaus_arvo: kysymys2Arvo, kysymys_id:10};
+        console.log(kysymys1Vastaus.vastaus_arvo + ", " + kysymys1Vastaus.kysymys_id);
+        var vastaukset = [kysymys1Vastaus, kysymys2Vastaus];
         
         $.ajax({
-            url: '${pageContext.request.contextPath}/lisaaVastaus',
+            url: '${pageContext.request.contextPath}/lisaaMontaVastausta',
             type: 'POST',
-            data: JSON.stringify(vastaus),
+            data: JSON.stringify(vastaukset),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function(data){
-            	console.log("onnistui");
+            	$("#ajaxMessage").text("vastausten lis‰ys onnistui");
             },
             failure: function(errMsg) {
-                console.log("failed");
+            	$("#ajaxMessage").text("vastausten lis‰ys ep‰onnistui");
             }
         });
-		
-        /*$.post('${pageContext.request.contextPath}/lisaaVastaus', 
-        		$(this).serialize(), function(response) {
-          });
-          e.preventDefault(); // prevent actual form submit and page reload
-          prevent form post javascript
-          submit --> onclick*/
 	});
+	
+	
+	$('#lisaaKysymys').click(function() {
+		var kysymystyyppi = $('input[name="kysymystyyppi"]:checked').val();
+		console.log(kysymystyyppi);
+		var uusiKysymysArvo = $("#uusi_kysymys1").val();
+		console.log("kysymys_arvo: "+uusiKysymysArvo);
+		var tyyppi = 0;
+		if (kysymystyyppi == 'avoin') {
+			tyyppi = 1;
+		} else if (kysymystyyppi == 'radiobutton') {
+			tyyppi = 2;
+		} else if (kysymystyyppi == 'skaala') {
+			tyyppi = 3;
+		}
+		console.log(tyyppi);
+        var uusiKysymys1 = {kysymys_arvo: uusiKysymysArvo, tyyppi_id:tyyppi};
+
+        
+        $.ajax({
+            url: '${pageContext.request.contextPath}/lisaaKysymys',
+            type: 'POST',
+            data: JSON.stringify(uusiKysymys1),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function(data){
+            	$("#ajaxMessage").text("kysymyksen lis‰ys onnistui");
+            },
+            failure: function(errMsg) {
+            	$("#ajaxMessage").text("kysymyksen lis‰ys ep‰onnistui");
+            }
+        });
+	});
+		
+        /*[ {
+  "tyyppi_id" : 1,
+  "tyyppi_nimi" : "avoin kysymys"
+}, {
+  "tyyppi_id" : 2,
+  "tyyppi_nimi" : "radiobutton"
+}, {
+  "tyyppi_id" : 3,
+  "tyyppi_nimi" : "skaala"
+} ]
+          */
+	
 });
 
 

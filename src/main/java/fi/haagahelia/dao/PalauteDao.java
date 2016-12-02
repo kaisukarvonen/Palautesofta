@@ -73,4 +73,22 @@ public class PalauteDao implements PalauteService {
 	        }
 	    });
 	}
+	
+	public Boolean lisaaKysymys(final Kysymys kysymys) { 
+		String addSql = "INSERT INTO kysymys (kysely_id, kysymys_nimi,tyyppi_id) VALUES (?,?,?)";
+	    return jdbcTemplate.execute(addSql, new PreparedStatementCallback<Boolean>(){   
+	        public Boolean doInPreparedStatement(PreparedStatement ps)  
+	                throws SQLException, DataAccessException {
+	        	ps.setInt(1, 3);
+	            ps.setString(2, kysymys.getNimi());      
+	            ps.setInt(3,kysymys.getTyyppiId());    
+	            return ps.execute();              
+	        }
+	    });
+	}
+	/*,kysely_id integer NOT NULL
+		,kysymys_nimi varchar(255) NOT NULL
+		,tyyppi_id integer NOT NULL
+	 * 
+	 */
 }
