@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-@JsonPropertyOrder({"kysymys_arvo", "kysymys_id", "tyyppi_id", "vastaukset"})
+@JsonPropertyOrder({"kysymys_arvo", "kysymys_id", "tyyppi_id", "vastausvaihtoehdot", "vastaukset"})
 public class Kysymys {
 	@JsonProperty("kysymys_arvo")
 	private String nimi;
@@ -22,6 +22,9 @@ public class Kysymys {
 	
 	@JsonProperty("tyyppi_id")
 	private int tyyppiId;
+	
+	@JsonProperty("vastausvaihtoehdot")
+	private String vastausvaihtoehdot;
 	
 
 	public Kysymys() {
@@ -90,6 +93,16 @@ public class Kysymys {
 	public String toString() {
 		return "kysymys: "+ this.getNimi();
 	}
+
+	public String getVastausvaihtoehdot() {
+		return vastausvaihtoehdot;
+	}
+
+	public void setVastausvaihtoehdot(String vastausvaihtoehdot) {
+		this.vastausvaihtoehdot = vastausvaihtoehdot;
+	}
+	
+	
 	
 	
 }

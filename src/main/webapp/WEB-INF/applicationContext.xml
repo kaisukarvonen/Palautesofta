@@ -17,7 +17,7 @@
 	<context:component-scan base-package="fi.haagahelia" /> 
 	
 
-	<mvc:view-controller path="/" view-name="index" />
+	<mvc:view-controller path="/" view-name="mainpage" />
 
 
 	<bean
@@ -47,13 +47,12 @@
 
 	<sec:http auto-config="true" use-expressions="true">
 		
-		<sec:intercept-url pattern="/secure/admin/**" access="hasRole('ROLE_ADMIN')" />
-		<sec:intercept-url pattern="/secure/*" access="isAuthenticated()" />
+		<sec:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
 		<sec:intercept-url pattern="/*" access="permitAll" />
 
 		<sec:form-login
 			login-page="/login"
-			default-target-url="/main"
+			default-target-url="/admin/adminpage"
 			authentication-failure-url="/loginfail" />
 			
 		<sec:logout logout-success-url="/logout" />
@@ -67,8 +66,8 @@
 		<sec:authentication-provider>
 			<sec:password-encoder ref="encoder" />
 			<sec:jdbc-user-service data-source-ref="dataSource"
-				users-by-username-query="select username, password_encrypted, enabled from pelaaja where username=? and enabled = 1"
-				authorities-by-username-query="select pelaaja.username, a.role from pelaaja pelaaja JOIN pelaaja_authority pauth ON (pelaaja.username = pauth.pelaaja_username) JOIN authority a ON (a.id = pauth.authority_id) WHERE pelaaja.username = ?" />
+				users-by-username-query="select username, password_encrypted, enabled from admin where username=? and enabled = 1"
+				authorities-by-username-query="select adm.username, auth.role from admin adm JOIN admin_authority adminauth ON (adm.admin_id = adminauth.admin_id) JOIN authority auth ON (auth.authority_id = adminauth.authority_id) WHERE adm.username = ?" />
 		</sec:authentication-provider>
 	</sec:authentication-manager>
 

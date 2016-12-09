@@ -2,7 +2,6 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<http auto-config="false" disable-url-rewriting="true"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -22,38 +21,24 @@ body {
  <div class="w3-twothird">
     <div class="w3-container w3-card-2 w3-white w3-margin-bottom">
 		
-		
-	  <a href="kyselytsisalto.json">Kyselyt json-datana</a><br>
+	<!--  -->	
+	<a href="kyselytsisalto.json">Kyselyt json-datana</a><br>
 	<a href="kysymystyyppilista.json">Kysymystyypit</a><br><br>
-
-<!-- getJSON(.json) -url ei n‰yt‰ dataa l‰hteest‰ proto.../admin/.json, miten k‰ytt‰‰ jsonia joka on admin-kirjautumisen takana -->
-
- 	<h4><div id="kysymys1">Mink‰ arvosanan antaisit kurssista?</div></h4>
-	  <input type="radio" name="arvosana" value="hyv‰"> Hyv‰<br>
-	  <input type="radio" name="arvosana" value="keskiverto"> Keskiverto<br>
-	  <input type="radio" name="arvosana" value="huono"> Huono
-      <br><br>
       
-      <h4><div id="kysymys2">Onko el‰m‰ mukavaa?</div></h4>
-      <input type="text" id="kysymys2_arvo"/>
-      <br>
-      <input type="button" id="lisaaMontaVastausta" value="Tallenna vastaukset"/>
-      
-      <div id="ajaxMessage"></div>
-      
-      <br><br>
-      <!--  
       <h4>Lis‰‰ uusi kysymys</h4>
       <b>Tyyppi:</b><br>
       <input type="radio" name="kysymystyyppi" value="avoin"> Avoin kysymys<br>
 	  <input type="radio" name="kysymystyyppi" value="radiobutton"> Radiobutton<br>
 	  <input type="radio" name="kysymystyyppi" value="skaala"> Skaala<br>
-	  Kysymys: <input type="text" id="uusi_kysymys1"/><br>
-	  <input type="button" id="lisaaKysymys" value="Lis‰‰ kysymys"/>-->
+	  Vastausvaihtoehdot (erota pilkulla): <br><input type="text" id="vastausvaihtoehdot"/><br>
+	  Kysymys:<br> <input type="text" id="uusi_kysymys1"/><br>
+	  <input type="button" id="lisaaKysymys" value="Lis‰‰ kysymys"/>
 	  
-	  <a href="login">Admin</a>
+	  <br><br>
 	  
-	  <br><br><br>
+	  <div id="ajaxMessage"></div><br><br>
+	  
+	  <a href="../j_spring_security_logout" >Kirjaudu ulos</a><br><br>
  	</div>
  </div>
 </div>
@@ -71,49 +56,30 @@ $.getJSON("kyselytsimple.json", function (json) {
 
 
 $(document).ready(function() { 
-	$('#lisaaMontaVastausta').click(function() {
-		var kysymys1Arvo = $('input[name="arvosana"]:checked').val();
-		var kysymys2Arvo = $("#kysymys2_arvo").val();
-        var kysymys1Vastaus = {vastaus_arvo: kysymys1Arvo, kysymys_id:6};
-        var kysymys2Vastaus = {vastaus_arvo: kysymys2Arvo, kysymys_id:10};
-        console.log(kysymys1Vastaus.vastaus_arvo + ", " + kysymys1Vastaus.kysymys_id);
-        var vastaukset = [kysymys1Vastaus, kysymys2Vastaus];
-        
-        $.ajax({
-            url: '${pageContext.request.contextPath}/lisaaMontaVastausta',
-            type: 'POST',
-            data: JSON.stringify(vastaukset),
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: function(data){
-            	$("#ajaxMessage").text("vastausten lis‰ys onnistui");
-            },
-            failure: function(errMsg) {
-            	$("#ajaxMessage").text("vastausten lis‰ys ep‰onnistui");
-            }
-        });
-	});
-	
 	
 	$('#lisaaKysymys').click(function() {
 		var kysymystyyppi = $('input[name="kysymystyyppi"]:checked').val();
 		console.log(kysymystyyppi);
+		var vaihtoehdot = $("#vastausvaihtoehdot").val();
 		var uusiKysymysArvo = $("#uusi_kysymys1").val();
 		console.log("kysymys_arvo: "+uusiKysymysArvo);
 		var tyyppi = 0;
 		if (kysymystyyppi == 'avoin') {
 			tyyppi = 1;
+			if (vaihtoehdot == "") {
+				vaihtoehdot = "-";
+			}
 		} else if (kysymystyyppi == 'radiobutton') {
 			tyyppi = 2;
 		} else if (kysymystyyppi == 'skaala') {
 			tyyppi = 3;
 		}
 		console.log(tyyppi);
-        var uusiKysymys1 = {kysymys_arvo: uusiKysymysArvo, tyyppi_id:tyyppi};
+        var uusiKysymys1 = {kysymys_arvo: uusiKysymysArvo, tyyppi_id:tyyppi, vastausvaihtoehdot:vaihtoehdot};
 
         
         $.ajax({
-            url: '${pageContext.request.contextPath}/lisaaKysymys',
+            url: '${pageContext.request.contextPath}/admin/lisaaKysymys',
             type: 'POST',
             data: JSON.stringify(uusiKysymys1),
             contentType: "application/json; charset=utf-8",
@@ -126,12 +92,7 @@ $(document).ready(function() {
             }
         });
 	});
-		
-
-	
 });
-
-
 
 </script>
  

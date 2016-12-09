@@ -41,7 +41,7 @@ public class PalauteDao implements PalauteService {
 	}
 	
 	public List<Kysymys> listaaKysymykset() {
-		String searchSql = "SELECT kysymys_id, kysymys_nimi, kysely_id, tyyppi_id FROM kysymys ORDER BY kysymys_nimi";
+		String searchSql = "SELECT kysymys_id, kysymys_nimi, kysely_id, tyyppi_id, vaihtoehdot FROM kysymys ORDER BY kysymys_id";
 		RowMapper<Kysymys> mapper = new KysymysRowMapper();
 		List<Kysymys> kysymykset = jdbcTemplate.query(searchSql, mapper);
 		return kysymykset;
@@ -75,13 +75,14 @@ public class PalauteDao implements PalauteService {
 	}
 	
 	public Boolean lisaaKysymys(final Kysymys kysymys) { 
-		String addSql = "INSERT INTO kysymys (kysely_id, kysymys_nimi,tyyppi_id) VALUES (?,?,?)";
+		String addSql = "INSERT INTO kysymys (kysely_id, kysymys_nimi,tyyppi_id, vaihtoehdot) VALUES (?,?,?,?)";
 	    return jdbcTemplate.execute(addSql, new PreparedStatementCallback<Boolean>(){   
 	        public Boolean doInPreparedStatement(PreparedStatement ps)  
 	                throws SQLException, DataAccessException {
 	        	ps.setInt(1, 3);
 	            ps.setString(2, kysymys.getNimi());      
-	            ps.setInt(3,kysymys.getTyyppiId());    
+	            ps.setInt(3,kysymys.getTyyppiId());
+	            ps.setString(4, kysymys.getVastausvaihtoehdot()); 
 	            return ps.execute();              
 	        }
 	    });
