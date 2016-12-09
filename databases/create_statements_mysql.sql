@@ -41,6 +41,7 @@ kysymys_id integer NOT NULL auto_increment
 ,kysely_id integer NOT NULL
 ,kysymys_nimi varchar(255) NOT NULL
 ,tyyppi_id integer NOT NULL
+,vaihtoehdot varchar(255) DEFAULT ' ';
 ,PRIMARY KEY(kysymys_id)
 ,FOREIGN KEY (kysely_id) REFERENCES kysely (kysely_id) ON DELETE CASCADE
 ,FOREIGN KEY (tyyppi_id) REFERENCES kysymys_tyyppi (tyyppi_id)
