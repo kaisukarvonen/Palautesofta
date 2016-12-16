@@ -40,46 +40,4 @@ public class AdminController {
         return kysymys; 
     }
     
-	@RequestMapping(value="/kysymystyyppilista.json", method=RequestMethod.GET)
-	@ResponseBody
-	public String listaaKysymysTyypit() throws JsonProcessingException {
-		ObjectMapper mapper = new ObjectMapper();
-    	String prettyList = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(palauteservice.listaaKysymysTyypit());
-    	
-    	return prettyList;
-	}
-	
-    @RequestMapping(value="/kyselytsisalto.json", method=RequestMethod.GET)
-    @ResponseBody
-    public String listaaSisaltoJson() throws JsonProcessingException {
-    	ObjectMapper mapper = new ObjectMapper();
-    	String prettyList = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(listaaKyselytSisalto());
-    	
-    	return prettyList;
-    }
-    
-    //testiä
-    
-    public List<Kysely> listaaKyselytSisalto() {
-    	
-    	List<Vastaus> vastaukset = palauteservice.listaaVastaukset();
-    	List<Kysymys> kysymykset = palauteservice.listaaKysymykset();
-    	
-    	for (Vastaus v : vastaukset) {
-			for (Kysymys k : kysymykset) {
-				if (v.getKysymysId() == k.getId()) {
-					k.addToList(v); 
-				}
-			}
-		}
-    	List<Kysely> kyselyt = palauteservice.listaaKyselyt();
-    	for (Kysely kysely : kyselyt) {
-			for (Kysymys k : kysymykset) {
-				if (kysely.getId() == k.getKysely().getId()) {
-					kysely.addToList(k); 
-				}
-			}
-		}
-    	return kyselyt;
-    }
 }
